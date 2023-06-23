@@ -1,0 +1,81 @@
+backup partition
+SSH login router display partition:
+
+cat /proc/mtd
+
+mtd0: 08000000 00020000 "spi0.1"
+mtd1: 00100000 00020000 "BL2"
+mtd2: 00040000 00020000 "Nvram"
+mtd3: 00040000 00020000 "Bdata"
+mtd4: 00200000 00020000 "Factory"
+mtd5: 00200000 00020000 "FIP"
+mtd6: 00040000 00020000 "crash"
+mtd7: 00040000 00020000 "crash_log"
+mtd8: 01e00000 00020000 "ubi"
+mtd9: 01e00000 00020000 "ubi1"
+mtd10: 03200000 00020000 "overlay"
+
+cat /proc/partitions
+
+  31        0     131072 mtdblock0
+  31        1       1024 mtdblock1
+  31        2        256 mtdblock2
+  31        3        256 mtdblock3
+  31        4       2048 mtdblock4
+  31        5       2048 mtdblock5
+  31        6        256 mtdblock6
+  31        7        256 mtdblock7
+  31        8      30720 mtdblock8
+  31        9      30720 mtdblock9
+  31       10      51200 mtdblock10
+253        0      15748 ubiblock0_1
+
+You can see that the original firmware partitions of ubi and ubi1 are 30MB.
+
+Check which partition the FIP is in, some are in partition 4, some are in partition 5; you need to be optimistic about your own
+
+Back up the FIP and Factory partitions:
+use the dd command to save to the tmp folder:
+
+dd if=/dev/mtd4 of=/tmp/mtd4_Factory.bin
+dd if=/dev/mtd5 of=/tmp/mtd5_FIP.bin
+Download the backup to your computer and save it.
+
+uboot brush
+Use winscp software to download mt7986_redmi_ax6000-fip-fixed-parts.bin to router tmp directory
+
+mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
+After entering the command and pressing Enter, it looks like this:
+
+root@XiaoQiang:~# mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
+Unlocking FIP ...
+
+Writing from /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin to FIP ...
+
+Wait 10 seconds to unplug the power directly; the ipv4 address of the computer's ethernet card is fixed at 192.168.31.X (X is a number between 2 and 254)
+
+In de-energized state; hold the reset hole and plug in the power, observe the ethernet board, and you can let go in about 15 seconds. Currently, the first version of Undead Boot does not have an indicator light
+
+After confirming flashing is complete, unplug the power from the router. Then set the IP address of the computer to a fixed 192.168.31.2, then press and hold the RESET button on the router and turn on the power, wait 15 seconds, then release the RESET (because Uboot does not support the LED yet LED , so the light will not be on), use Chrome Enter 192.168.31.1 in the browser, you will see the webpage and select the large partition firmware to flash on the uboot recovery page.
+
+Return to original firmware
+Enter to view partition, log in to SSH to run
+
+cat /proc/mtd
+View FIP Location
+
+Download the backup FIP partition file to the tmp directory
+
+Login in SSH to run
+
+mtd write /tmp/mtd5_FIP.bin /dev/mtd5
+or
+mtd write /tmp/mtd5_FIP.bin FIP
+
+mtd5 is modified according to the actual situation
+
+Disconnect the power, then use Xiaomi's official brick rescue tool.
+
+Official Mi Router Repair Tool
+MIWIFIRepairTool.x86.zip
+Official Redmi AX6000 RB06 Firmware
