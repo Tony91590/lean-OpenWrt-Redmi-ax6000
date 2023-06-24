@@ -13,7 +13,15 @@
 # Custom for REDMI AX6000
 sed -i 's/zh_cn/auto/g' feeds/luci/modules/luci-base/root/etc/uci-defaults/luci-base
 sed -i 's/zh_cn/auto/g' feeds/luci/ applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd/luci-vlmcsd
-
+sed -i 's/delete firewall.kms/auto/g
+sed -i 's/add firewall rule/auto/g 
+sed -i 's/rename firewall.@rule[-1]="kms"/auto/g
+sed -i 's/set firewall.@rule[-1].name="kms"/auto/g
+sed -i 's/set firewall.@rule[-1].target="ACCEPT"/auto/g
+sed -i 's/set firewall.@rule[-1].src="wan"/auto/g
+sed -i 's/set firewall.@rule[-1].proto="tcp"/auto/g
+sed -i 's/set firewall.@rule[-1].dest_port="1688"/auto/g
+sed -i 's/commit firewall/auto/g
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/ddns.config feeds/packages/net/ddns-scripts/files/
 #======================
