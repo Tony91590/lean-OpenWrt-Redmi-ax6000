@@ -13,11 +13,11 @@
 # Custom for REDMI AX6000
 sed -i 's/zh_cn/auto/g' feeds/luci/modules/luci-base/root/etc/uci-defaults/luci-base
 sed -i 's/zh_cn/auto/g' feeds/luci/ applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd/luci-vlmcsd
-sed -i 's/delete firewall.kms/auto/g
-sed -i 's/add firewall rule/auto/g 
-sed -i 's/rename firewall.@rule[-1]="kms"/auto/g
-sed -i 's/set firewall.@rule[-1].name="kms"/auto/g
-sed -i 's/set firewall.@rule[-1].target="ACCEPT"/auto/g
+sed -i 's/delete firewall.kms/#delete firewall.kms/g
+sed -i 's/add firewall rule/#add firewall rule/g 
+sed -i 's/rename firewall.@rule[-1]="kms"/#rename firewall.@rule[-1]="kms"/g
+sed -i 's/set firewall.@rule[-1].name="kms"/#set firewall.@rule[-1].name="kms"/g
+sed -i 's/set firewall.@rule[-1].target="ACCEPT"/#set firewall.@rule[-1].target="ACCEPT/g
 sed -i 's/set firewall.@rule[-1].src="wan"/auto/g
 sed -i 's/set firewall.@rule[-1].proto="tcp"/auto/g
 sed -i 's/set firewall.@rule[-1].dest_port="1688"/auto/g
