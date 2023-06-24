@@ -6,6 +6,9 @@ uci commit fstab
 uci set upnpd.config.enabled=1
 uci commit upnpd
 
+uci set turboacc.config.hw_wed=1
+uci commit turboacc
+
 /etc/init.d/mtd-rw start
 
 rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
@@ -44,5 +47,7 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
+
+reboot
 
 exit 0
