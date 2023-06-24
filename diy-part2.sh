@@ -12,15 +12,8 @@
 
 # Custom for REDMI AX6000
 sed -i 's/zh_cn/auto/g' feeds/luci/modules/luci-base/root/etc/uci-defaults/luci-base
-sed -i 's/delete firewall.kms/#delete firewall.kms/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/add firewall rule/#add firewall rule/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/rename firewall.@rule[-1]="kms"/#rename firewall.@rule[-1]="kms"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/set firewall.@rule[-1].name="kms"/#set firewall.@rule[-1].name="kms"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/set firewall.@rule[-1].target="ACCEPT"/#set firewall.@rule[-1].target="ACCEPT/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/set firewall.@rule[-1].src="wan"/#set firewall.@rule[-1].src="wan"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/set firewall.@rule[-1].proto="tcp"/#set firewall.@rule[-1].proto="tcp"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/set firewall.@rule[-1].dest_port="1688"/#set firewall.@rule[-1].dest_port="1688"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/commit firewall/#commit firewall/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
+#======================
+cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/luci-vlmcsd feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/include/feeds.mk include/feeds.mk
 #======================
