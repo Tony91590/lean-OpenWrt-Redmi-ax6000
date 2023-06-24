@@ -20,7 +20,7 @@ sed -i 's/set firewall.@rule[-1].target="ACCEPT"/#set firewall.@rule[-1].target=
 sed -i 's/set firewall.@rule[-1].src="wan"/#set firewall.@rule[-1].src="wan"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
 sed -i 's/set firewall.@rule[-1].proto="tcp"/#set firewall.@rule[-1].proto="tcp"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
 sed -i 's/set firewall.@rule[-1].dest_port="1688"/#set firewall.@rule[-1].dest_port="1688"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
-sed -i 's/commit firewall/auto/g
+sed -i 's/commit firewall/#commit firewall/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/ddns.config feeds/packages/net/ddns-scripts/files/
 #======================
