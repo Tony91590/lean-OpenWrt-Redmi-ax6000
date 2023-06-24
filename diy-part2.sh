@@ -22,7 +22,7 @@ sed -i 's/set firewall.@rule[-1].proto="tcp"/#set firewall.@rule[-1].proto="tcp"
 sed -i 's/set firewall.@rule[-1].dest_port="1688"/#set firewall.@rule[-1].dest_port="1688"/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
 sed -i 's/commit firewall/#commit firewall/g feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/luci-vlmcsd
 #======================
-cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/config/Config-kernel.in config/Config-kernel.in
+cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/include/feeds.mk include/feeds.mk
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/ddns.config feeds/packages/net/ddns-scripts/files/
 #======================
