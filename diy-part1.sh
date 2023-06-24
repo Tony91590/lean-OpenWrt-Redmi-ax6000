@@ -14,6 +14,6 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git wo https://github.com/Tony91590/wo' >>feeds.conf.default
+echo 'src-git wo https://github.com/Tony91590/luci-theme-argon_new' >>feeds.conf.default
 #echo 'src-git helloworld https://github.com/Tony91590/qsdk-5.4' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
