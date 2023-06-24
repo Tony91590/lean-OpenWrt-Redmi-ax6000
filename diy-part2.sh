@@ -13,8 +13,6 @@
 # Custom for REDMI AX6000
 sed -i 's/zh_cn/auto/g' feeds/luci/modules/luci-base/root/etc/uci-defaults/luci-base
 #======================
-cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/luci-vlmcsd feeds/luci/applications/luci-app-vlmcsd/root/etc/uci-defaults/
-#======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/include/feeds.mk include/feeds.mk
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/ddns.config feeds/packages/net/ddns-scripts/files/
