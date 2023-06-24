@@ -27,7 +27,7 @@ $(strip $(if $(CONFIG_PER_FEED_REPO), \
   $(PACKAGE_DIR)))
 endef
 
-EXCLUDE_FEEDS:=exemple
+EXCLUDE_FEEDS:=wo
 
 # 1: destination file
 define FeedSourcesAppend
