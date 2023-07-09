@@ -21,8 +21,6 @@ cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/config/Config-kernel.in config/Confi
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/vlmcsd.ini feeds/packages/net/vlmcsd/files/
 #======================
-cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/turboacc feeds/luci/applications/luci-app-turboacc/root/etc/init.d/
-#======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/etc/banner package/base-files/files/etc/
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/etc/mtd-rw package/base-files/files/etc/init.d/
