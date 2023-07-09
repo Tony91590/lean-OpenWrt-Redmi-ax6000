@@ -1,8 +1,5 @@
 #!/bin/sh
 
-uci set luci.main.mediaurlbase=/luci-static/argon_violet
-uci commit luci
-
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
