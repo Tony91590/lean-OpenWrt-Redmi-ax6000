@@ -11,7 +11,6 @@
 ###############Name##############
 name: Redmi-AX6000-build-lean
 
-
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -25,7 +24,6 @@ env:
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   UPLOAD_PACKAGES: true
@@ -87,7 +85,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-
 
     - name: Download the installation package
       id: package
