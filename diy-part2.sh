@@ -29,7 +29,4 @@ chmod 0755 package/base-files/files/etc/init.d/mtd-rw
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/zzz-default-settings package/lean/default-settings/files/
 #======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/Makefile package/lean/default-settings/
-#======================
-cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/bin/config_generate package/base-files/files/bin/
-#======================
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/autocore/index.htm package/lean/autocore/files/arm/
