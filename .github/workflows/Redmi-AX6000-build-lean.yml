@@ -52,7 +52,9 @@ jobs:
         sudo -E apt -y autoremove --purge
         sudo -E apt clean
         sudo timedatectl set-timezone "$TZ"
-   
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+        
     - name: Download firmware source code
       working-directory: /workdir
       run: |
