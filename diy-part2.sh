@@ -26,5 +26,5 @@ cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/zzz-default-setting
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/Makefile package/lean/default-settings/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/autocore/index.htm package/lean/autocore/files/arm/
 rm -rf feeds/luci/themes/luci-theme-argon/*
-rmdir -v luci-theme-argon
+rmdir -v feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku
