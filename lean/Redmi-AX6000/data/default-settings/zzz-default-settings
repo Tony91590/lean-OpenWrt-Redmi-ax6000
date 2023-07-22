@@ -11,6 +11,11 @@ uci commit firewall
 uci set upnpd.config.enabled=1
 uci commit upnpd
 
+
+wireless.radio0.htmode=HE40
+wireless.radio0.legacy_rates=1
+wireless.radio0.mu_beamformer=0
+wireless.radio0.noscan=1
 uci set wireless.@wifi-device[0].channel=auto
 uci set wireless.@wifi-device[1].channel=auto
 uci set wireless.@wifi-device[1].htmode=HE160
