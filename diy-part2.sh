@@ -25,6 +25,6 @@ chmod 0755 package/base-files/files/etc/init.d/mtd-rw
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/zzz-default-settings package/lean/default-settings/files/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/Makefile package/lean/default-settings/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/autocore/index.htm package/lean/autocore/files/arm/
-sed -i 's/MODPARAMS.mt7915e:=wed_enable=Y//g' package/kernel/mt76/Makefile
+sed -i '/MODPARAMS.mt7915e:=wed_enable=Y/d' package/kernel/mt76/Makefile
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
