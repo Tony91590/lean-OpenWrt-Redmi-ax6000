@@ -136,11 +136,9 @@ static int ws2812b_probe(struct spi_device *spi)
 		u32 color_idx[WS2812B_NUM_COLORS] = {
 			LED_COLOR_ID_GREEN,
 			LED_COLOR_ID_RED,
-			LED_COLOR_ID_BLUE,
-		
-                u32 color_intensity[WS2812B_NUM_COLORS] = { 255, 255, 255, };
-		
+			LED_COLOR_ID_BLUE,	
 		};
+	        u32 color_intensity[WS2812B_NUM_COLORS] = { 255, 255, 255, };
 		u32 cascade;
 
 		ret = fwnode_property_read_u32(led_node, "reg", &cascade);
