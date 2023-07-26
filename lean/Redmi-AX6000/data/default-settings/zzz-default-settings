@@ -3,10 +3,10 @@
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
-uci set firewall.@defaults[0].flow_offloading=1
-uci set firewall.@defaults[0].flow_offloading_hw=1
-uci set firewall.@defaults[0].fullcone=2
-uci commit firewall
+#uci set firewall.@defaults[0].flow_offloading=1
+#uci set firewall.@defaults[0].flow_offloading_hw=1
+#uci set firewall.@defaults[0].fullcone=2
+#uci commit firewall
 
 uci set upnpd.config.enabled=1
 uci commit upnpd
