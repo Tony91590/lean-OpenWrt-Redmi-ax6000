@@ -164,6 +164,7 @@ static int ws2812b_probe(struct spi_device *spi)
 		cnt = fwnode_property_count_u32(led_node, "color-intensity");
 		if (cnt > 0 && cnt <= WS2812B_NUM_COLORS)
 			fwnode_property_read_u32_array(led_node, "color-intensity",
+							   color_intensity, (size_t)cnt);
 						
 		priv->leds[cur_led].mc_cdev.subled_info =
 			priv->leds[cur_led].subled;
