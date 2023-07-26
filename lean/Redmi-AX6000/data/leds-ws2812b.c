@@ -17,11 +17,12 @@
 #include <linux/property.h>
 #include <linux/spi/spi.h>
 #include <linux/mutex.h>
+#include <linux/version.h>
 
 #define WS2812B_BYTES_PER_COLOR 3
 #define WS2812B_NUM_COLORS 3
 /* A continuous 0 for 50us+ as the 'reset' signal */
-#define WS2812B_RESET_LEN 14
+#define WS2812B_RESET_LEN 18
 
 struct ws2812b_led {
 	struct led_classdev_mc mc_cdev;
@@ -136,9 +137,10 @@ static int ws2812b_probe(struct spi_device *spi)
 			LED_COLOR_ID_GREEN,
 			LED_COLOR_ID_RED,
 			LED_COLOR_ID_BLUE,
+		
+                u32 color_intensity[WS2812B_NUM_COLORS] = { 255, 255, 255, };
+		
 		};
-
-		u32 color_intensity[WS2812B_NUM_COLORS] = { 255, 255, 255, };
 		u32 cascade;
 
 		ret = fwnode_property_read_u32(led_node, "reg", &cascade);
@@ -162,8 +164,7 @@ static int ws2812b_probe(struct spi_device *spi)
 		cnt = fwnode_property_count_u32(led_node, "color-intensity");
 		if (cnt > 0 && cnt <= WS2812B_NUM_COLORS)
 			fwnode_property_read_u32_array(led_node, "color-intensity",
-							   color_intensity, (size_t)cnt);
-
+						
 		priv->leds[cur_led].mc_cdev.subled_info =
 			priv->leds[cur_led].subled;
 		priv->leds[cur_led].mc_cdev.num_colors = WS2812B_NUM_COLORS;
@@ -198,7 +199,11 @@ ERR_UNREG_LEDS:
 	return ret;
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,18,0)
+static void ws2812b_remove(struct spi_device *spi)
+#else
 static int ws2812b_remove(struct spi_device *spi)
+#endif
 {
 	struct ws2812b_priv *priv = spi_get_drvdata(spi);
 	int cur_led;
@@ -208,7 +213,9 @@ static int ws2812b_remove(struct spi_device *spi)
 	kfree(priv->data_buf);
 	mutex_destroy(&priv->mutex);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,18,0)
 	return 0;
+#endif
 }
 
 static const struct spi_device_id ws2812b_spi_ids[] = {
