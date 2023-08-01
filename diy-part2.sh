@@ -18,7 +18,8 @@ sed -i 's/time.ustc.edu.cn/2.openwrt.pool.ntp.org/g' package/base-files/files/bi
 sed -i 's/cn.pool.ntp.org/3.openwrt.pool.ntp.org/g' package/base-files/files/bin/config_generate
 sed -i 's/zh_cn/auto/g' feeds/luci/modules/luci-base/root/etc/uci-defaults/luci-base
 sed -i 's/2023-05-13/2023-07-26/g' package/kernel/mt76/Makefile
-sed -i 's/PKG_SOURCE_VERSION:=969b7b5ebd129068ca56e4b0d831593a2f92382f/PKG_SOURCE_VERSION:=cd3dfe39276905307cc028ac8edf2c06963cda23/g' package/kernel/mt76/Makefilesed -i 's/PKG_MIRROR_HASH:=d28869591d1cb9a967b72f5cd8215c7b2c3388b7b31147b7b18c797018ab8ffb/PKG_MIRROR_HASH:=413d2d0faa81d834ba13cb9e503e1e3a61e3e071014da6b525a123e5da053f90/g' package/kernel/mt76/Makefile
+sed -i 's/PKG_SOURCE_VERSION:=969b7b5ebd129068ca56e4b0d831593a2f92382f/PKG_SOURCE_VERSION:=cd3dfe39276905307cc028ac8edf2c06963cda23/g' package/kernel/mt76/Makefile
+sed -i 's/PKG_MIRROR_HASH:=d28869591d1cb9a967b72f5cd8215c7b2c3388b7b31147b7b18c797018ab8ffb/PKG_MIRROR_HASH:=413d2d0faa81d834ba13cb9e503e1e3a61e3e071014da6b525a123e5da053f90/g' package/kernel/mt76/Makefile
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/ddns.config feeds/packages/net/ddns-scripts/files/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/vlmcsd.ini feeds/packages/net/vlmcsd/files/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/etc/banner package/base-files/files/etc/
