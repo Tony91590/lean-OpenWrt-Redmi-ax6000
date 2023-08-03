@@ -32,4 +32,4 @@ cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/leds-ws2812b.c package/kernel/leds-w
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/lib/mac80211.sh package/kernel/mac80211/files/lib/wifi/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/netifd/mac80211.sh package/kernel/mac80211/files/lib/netifd/wireless/
 rm -rf package/network/services/hostapd
-git clone -b Hostap2 https://github.com/Tony91590/immortalwrt.git package/network/services/hostapd
+git clone -b Hostap3 https://github.com/Tony91590/immortalwrt.git package/network/services/hostapd
