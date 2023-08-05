@@ -18,7 +18,7 @@ on:
     - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/Tony91590/lean-lede.git
+  REPO_URL: https://github.com/immortalwrt-collections/lean-lede.git
   REPO_BRANCH: lede
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
