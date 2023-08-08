@@ -14,8 +14,6 @@ uci commit upnpd
 uci set wireless.@wifi-device[0].channel=auto
 uci set wireless.@wifi-device[1].channel=auto
 uci set wireless.@wifi-device[1].htmode=HE160
-uci set wireless.default_radio0.disassoc_low_ack=1
-uci set wireless.default_radio1.disassoc_low_ack=1
 uci commit wireless
 
 /etc/init.d/mtd-rw start
