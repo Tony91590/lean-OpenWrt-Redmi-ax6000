@@ -19,7 +19,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Tony91590/lede.git
-  REPO_BRANCH: ax67
+  REPO_BRANCH: ax6000-old
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
