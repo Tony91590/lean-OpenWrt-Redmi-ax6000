@@ -18,27 +18,6 @@ uci set wireless.@wifi-iface[0].skip_inactivity_poll=1
 uci set wireless.@wifi-iface[1].skip_inactivity_poll=1
 uci set wireless.@wifi-iface[0].disassoc_low_ack=0
 uci set wireless.@wifi-iface[1].disassoc_low_ack=0
-wireless.wifinet0.wpa_master_rekey='0'
-wireless.wifinet0.disassoc_low_ack='0'
-wireless.wifinet0.key='bettyboop'
-wireless.wifinet0.ieee80211r='1'
-wireless.wifinet0.ft_over_ds='1'
-wireless.wifinet0.ft_psk_generate_local='1'
-wireless.wifinet1=wifi-iface
-wireless.wifinet1.device='radio1'
-wireless.wifinet1.network='lan'
-wireless.wifinet1.mode='ap'
-wireless.wifinet1.ssid='Tenda_4BA290_5G'
-wireless.wifinet1.encryption='psk-mixed'
-wireless.wifinet1.skip_inactivity_poll='1'
-wireless.wifinet1.wpa_group_rekey='0'
-wireless.wifinet1.wpa_pair_rekey='0'
-wireless.wifinet1.wpa_master_rekey='0'
-wireless.wifinet1.disassoc_low_ack='0'
-wireless.wifinet1.key='bettyboop'
-wireless.wifinet1.ieee80211r='1'
-wireless.wifinet1.ft_over_ds='1'
-wireless.wifinet1.ft_psk_generate_local='1
 uci commit wireless
 
 /etc/init.d/mtd-rw start
