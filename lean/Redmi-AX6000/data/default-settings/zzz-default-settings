@@ -1,23 +1,23 @@
 #!/bin/sh
 
-uci set fstab.@global[0].anon_mount=1
+uci set fstab.@global[0].anon_mount='1'
 uci commit fstab
 
-uci set firewall.@defaults[0].flow_offloading=1
-uci set firewall.@defaults[0].flow_offloading_hw=1
-uci set firewall.@defaults[0].fullcone=2
+uci set firewall.@defaults[0].flow_offloading='1'
+uci set firewall.@defaults[0].flow_offloading_hw='1'
+uci set firewall.@defaults[0].fullcone='2'
 uci commit firewall
 
-uci set upnpd.config.enabled=1
+uci set upnpd.config.enabled='1'
 uci commit upnpd
 
-uci set wireless.@wifi-device[0].channel=auto
-uci set wireless.@wifi-device[1].channel=auto
-uci set wireless.@wifi-device[1].htmode=HE160
-uci set wireless.@wifi-iface[0].skip_inactivity_poll=1
-uci set wireless.@wifi-iface[1].skip_inactivity_poll=1
-uci set wireless.@wifi-iface[0].disassoc_low_ack=0
-uci set wireless.@wifi-iface[1].disassoc_low_ack=0
+uci set wireless.@wifi-device[0].channel='auto'
+uci set wireless.@wifi-device[1].channel='auto'
+uci set wireless.@wifi-device[1].htmode='HE160'
+uci set wireless.@wifi-iface[0].skip_inactivity_poll='1'
+uci set wireless.@wifi-iface[1].skip_inactivity_poll='1'
+uci set wireless.@wifi-iface[0].disassoc_low_ack='0'
+uci set wireless.@wifi-iface[1].disassoc_low_ack='0'
 uci commit wireless
 
 uci set argon.@global[0].bing_background='1'
