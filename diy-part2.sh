@@ -28,3 +28,6 @@ cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/autocore/index.htm package/lean/auto
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/zones.lua feeds/luci/applications/luci-app-firewall/luasrc/model/cbi/firewall/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/mt7986a-xiaomi-redmi-router-ax6000.dts target/linux/mediatek/dts/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/leds-ws2812b.c package/kernel/leds-ws2812b/src/
+sed -i 's/openwrt/Tony91590/g' package/kernel/mt76/Makefile
+sed -i 's/b14c2351ddb8601c322576d84029e463d456caef/5eab96ccb27d07e49fef96f3791763d2ee265264/g' package/kernel/mt76/Makefile
+sed -i '/PKG_MIRROR_HASH/d' package/kernel/mt76/Makefile
