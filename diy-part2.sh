@@ -26,5 +26,5 @@ cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/zzz-default-setting
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/default-settings/Makefile package/lean/default-settings/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/autocore/index.htm package/lean/autocore/files/arm/
 cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/zones.lua feeds/luci/applications/luci-app-firewall/luasrc/model/cbi/firewall/
-cp# $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/mt7986a-xiaomi-redmi-router-ax6000.dts target/linux/mediatek/dts/
+#cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/mt7986a-xiaomi-redmi-router-ax6000.dts target/linux/mediatek/dts/
 #cp $GITHUB_WORKSPACE/lean/Redmi-AX6000/data/leds-ws2812b.c package/kernel/leds-ws2812b/src/
