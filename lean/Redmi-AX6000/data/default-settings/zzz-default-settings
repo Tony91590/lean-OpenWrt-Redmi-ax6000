@@ -11,6 +11,9 @@ uci commit firewall
 uci set upnpd.config.enabled='1'
 uci commit upnpd
 
+uci set vas.countrycode.auto_upgrade='OFF'
+uci commit vas
+
 uci set wireless.@wifi-device[0].channel='auto'
 uci set wireless.@wifi-device[1].channel='auto'
 uci set wireless.@wifi-iface[0].skip_inactivity_poll='1'
