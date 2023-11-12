@@ -18,6 +18,10 @@ uci set vas.countrycode.auto_upgrade='NULL'
 uci commit vas
 uci set otapred.settings.auto=0
 uci commit otapred
+sed -i '/exit 0/d' /etc/rc.local
+echo "(sleep 60;iwconfig wl0 txpower 21;iwconfig wl1 txpower 17)& 
+exit 0" >> /etc/rc.local
+reboot
 
 uci set wireless.@wifi-device[0].channel='auto'
 uci set wireless.@wifi-device[1].channel='auto'
