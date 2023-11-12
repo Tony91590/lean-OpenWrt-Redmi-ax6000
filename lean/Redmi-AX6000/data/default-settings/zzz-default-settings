@@ -14,8 +14,6 @@ uci commit upnpd
 
 sed -i 's/channel=.*/channel="debug"/g' /etc/init.d/dropbear
 /etc/init.d/dropbear restart
-uci set vas.countrycode.auto_upgrade='NULL'
-uci commit vas
 uci set otapred.settings.auto=0
 uci commit otapred
 sed -i '/exit 0/d' /etc/rc.local
