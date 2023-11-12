@@ -14,6 +14,9 @@ uci commit upnpd
 uci set vas.countrycode.auto_upgrade='OFF'
 uci commit vas
 
+uci set otapred.settings.auto=0
+uci commit otapred
+
 uci set wireless.@wifi-device[0].channel='auto'
 uci set wireless.@wifi-device[1].channel='auto'
 uci set wireless.@wifi-iface[0].skip_inactivity_poll='1'
