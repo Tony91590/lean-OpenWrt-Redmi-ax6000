@@ -11,7 +11,7 @@ uci commit firewall
 uci set upnpd.config.enabled='1'
 uci commit upnpd
 
-uci set vas.countrycode.auto_upgrade='OFF'
+uci set vas.countrycode.auto_upgrade='NULL'
 uci commit vas
 
 uci set otapred.settings.auto=0
@@ -30,7 +30,7 @@ uci commit argon
 
 /etc/init.d/mtd-rw start
 
-rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
+1rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
