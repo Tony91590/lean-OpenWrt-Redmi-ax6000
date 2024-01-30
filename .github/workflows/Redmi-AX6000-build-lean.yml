@@ -143,7 +143,9 @@ jobs:
         echo "📥 Firmware download" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
-    - name: Publish to release
+    - name: Checkout  
+      uses: actions/checkout@v3
+    - name: Release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
