@@ -143,10 +143,8 @@ jobs:
         echo "📥 Firmware download" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
-    - name: Checkout  
-      uses: actions/checkout@v3
     - name: Release
-      uses: softprops/action-gh-release@v1
+      uses: 
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
