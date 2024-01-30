@@ -144,7 +144,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Publish to release
-      uses: Timheuer/action-gh-release@v1
+      uses: Timheuer/action-gh-release
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
