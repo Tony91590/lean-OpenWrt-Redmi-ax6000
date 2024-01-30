@@ -143,8 +143,8 @@ jobs:
         echo "📥 Firmware download" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
-    - name: Release
-      uses: 
+    - name: Publish to release
+      uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
