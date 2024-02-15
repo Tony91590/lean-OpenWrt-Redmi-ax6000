@@ -50,6 +50,8 @@ After entering the command and pressing Enter, it looks like this:
 root@XiaoQiang:~# mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
 Unlocking FIP ...
 
+mtd erase FIP mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP mtd verify /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
+
 Writing from /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin to FIP ...
 
 Wait 10 seconds to unplug the power directly; the ipv4 address of the computer's ethernet card is fixed at 192.168.31.X (X is a number between 2 and 254)
