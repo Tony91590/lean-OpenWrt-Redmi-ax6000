@@ -22,8 +22,6 @@ uci commit wireless
 uci set argon.@global[0].bing_background='1'
 uci commit argon
 
-/etc/init.d/mtd-rw start
-
 rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
