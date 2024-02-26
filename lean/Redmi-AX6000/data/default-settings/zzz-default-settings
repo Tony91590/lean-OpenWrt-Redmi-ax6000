@@ -13,10 +13,6 @@ uci commit upnpd
 
 uci set wireless.@wifi-device[0].channel='auto'
 uci set wireless.@wifi-device[1].channel='auto'
-uci set wireless.@wifi-iface[0].skip_inactivity_poll='1'
-uci set wireless.@wifi-iface[1].skip_inactivity_poll='1'
-uci set wireless.@wifi-iface[0].disassoc_low_ack='0'
-uci set wireless.@wifi-iface[1].disassoc_low_ack='0'
 uci commit wireless
 
 uci set argon.@global[0].bing_background='1'
