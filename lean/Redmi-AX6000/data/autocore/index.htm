@@ -14,8 +14,9 @@
 	local has_ipv6 = fs.access("/usr/sbin/ip6tables")
 	local has_dhcp = fs.access("/etc/config/dhcp")
 	local has_wifi = ((fs.stat("/etc/config/wireless", "size") or 0) > 0)
+	local has_temp = fs.access("/sbin/tempinfo")
 	local has_switch = false
-	
+
 	uci:foreach("network", "switch",
 			function(s)
 				has_switch = true
@@ -32,7 +33,7 @@
 		buffered = 0,
 		shared = 0
 	}
-	
+
 	local mem_cached = luci.sys.exec("sed -e '/^Cached: /!d; s#Cached: *##; s# kB##g' /proc/meminfo")
 
 	local swapinfo = sysinfo.swap or {
@@ -54,11 +55,15 @@
 			"sysctl -n -e net.nf_conntrack_max net.ipv4.netfilter.ip_conntrack_max"
 		):match("%d+")) or 4096
 
-		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l")
+		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l") or "0"
 
-		local cpu_usage = luci.sys.exec("top -n1 | awk '/^CPU/ { printf(\"%d%%\", 100 - $8) }'") or "6%"
-		local cpu_info = luci.sys.exec("/sbin/cpuinfo") or "ARM Processor x 0 (233MHz, 2.3°C)"
-		local eth_info = luci.sys.exec("ethinfo")
+		local cpu_usage = luci.sys.exec("top -n1 | awk '/^CPU/ {printf(\"%d%\", 100 - $8)}'") or "6%"
+		local cpu_info = luci.sys.exec("/sbin/cpuinfo") or "?"
+
+		local eth_info = ""
+		if not has_switch then
+			eth_info = luci.sys.exec("ethinfo")
+		end
 
 		local rv = {
 			cpuinfo    = cpu_info,
@@ -152,22 +157,13 @@
 					.format(bss[p+'rate'] / 1000, bss[p+'mhz']),
 		    ht = bss[p+'ht'], vht = bss[p+'vht'],
 			mhz = bss[p+'mhz'], nss = bss[p+'nss'],
-			mcs = bss[p+'mcs'], sgi = bss[p+'short_gi'],
-			he = bss[p+'he'], he_gi = bss[p+'he_gi'],
-			he_dcm = bss[p+'he_dcm'];
+			mcs = bss[p+'mcs'], sgi = bss[p+'short_gi'];
 
 		if (ht || vht) {
 			if (vht) s += ', VHT-MCS %d'.format(mcs);
 			if (nss) s += ', VHT-NSS %d'.format(nss);
 			if (ht)  s += ', MCS %s'.format(mcs);
 			if (sgi) s += ', <%:Short GI%>';
-		}
-		
-		if (he) {
-			s += ', HE-MCS %d'.format(mcs);
-			if (nss) s += ', HE-NSS %d'.format(nss);
-			if (he_gi) s += ', HE-GI %d'.format(he_gi);
-			if (he_dcm) s += ', HE-DCM %d'.format(he_dcm);
 		}
 
 		return s;
@@ -652,8 +648,8 @@
 			<% end %>
 
 			var e;
-			
-			if (e = document.getElementById('ethinfo'))			{
+
+			if (e = document.getElementById('ethinfo')) {
 				var ports = eval('(' + info.ethinfo + ')');
 				var tmp = "";
 				for (var i in ports)
@@ -672,7 +668,7 @@
 
 			if (e = document.getElementById('uptime'))
 				e.innerHTML = String.format('%t', info.uptime);
-				
+
 			if (e = document.getElementById('userinfo'))
 				e.innerHTML = info.userinfo;
 				
@@ -692,19 +688,13 @@
 
 			if (e = document.getElementById('memtotal'))
 				e.innerHTML = progressbar(
-					Math.floor((info.memory.free + info.memory.buffered) / 1048576) + " <%:MB%>",
-					Math.floor(info.memory.total / 1048576) + " <%:MB%>"
-				);
-
-			if (e = document.getElementById('memfree'))
-				e.innerHTML = progressbar(
-					Math.floor((info.memory.total - info.memory.free) / 1048576) + " <%:MB%>",
+					Math.floor(((info.memory.free + info.memory.buffered) / 1048576) + (info.memcached / 1024)) + " <%:MB%>",
 					Math.floor(info.memory.total / 1048576) + " <%:MB%>"
 				);
 
 			if (e = document.getElementById('membuff'))
 				e.innerHTML = progressbar(
-					Math.floor(info.memcached / 1024) + " <%:MB%>",
+					Math.floor(info.memory.buffered / 1048576) + " <%:MB%>",
 					Math.floor(info.memory.total / 1048576) + " <%:MB%>"
 				);
 
@@ -736,12 +726,15 @@
 		<tr><td width="33%"><%:Hostname%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
 		<tr><td width="33%"><%:Model%></td><td><%=pcdata(boardinfo.model or "?")%> <%=luci.sys.exec("cat /etc/bench.log") or ""%></td></tr>
 		<tr><td width="33%"><%:Architecture%></td><td id="cpuinfo">-</td></tr>
+		<% if has_temp then %>
+		<tr><td width="33%"><%:Temperature%></td><td><%=luci.sys.exec("/sbin/tempinfo") or "?"%></td></tr>
+		<% end %>
 		<tr><td width="33%"><%:Target Platform%></td><td><%=pcdata(boardinfo.release.target or "?")%></td></tr>
 		<tr><td width="33%"><%:Firmware Version%></td><td>
 			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%> /
 			<%=pcdata(ver.luciname)%> (<%=pcdata(ver.luciversion)%>)
 		</td></tr>
-		<tr><td width="33%"><%:Kernel Version%></td><td><%=luci.sys.exec("uname -r | awk -F '-' '{print $1}'") or "?"%></td></tr>
+		<tr><td width="33%"><%:Kernel Version%></td><td><%=unameinfo.release or "?"%></td></tr>
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
 		<tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr>
@@ -754,8 +747,7 @@
 
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><%:Total Available%></td><td id="memtotal">-</td></tr>
-		<tr><td width="33%"><%:Used%></td><td id="memfree">-</td></tr>
-		<tr><td width="33%"><%:Cached%></td><td id="membuff">-</td></tr>
+		<tr><td width="33%"><%:Buffered%></td><td id="membuff">-</td></tr>
 	</table>
 </fieldset>
 
